@@ -14,11 +14,11 @@ class LoginController extends Controller
             'password'=>'required'
         ];
         $this->validate($request,$rule);
-
         $params = $this->requestParams('password',['username'=>$request->email,'password'=>$request->password]);
         $request->request->add($params);
         $proxy = Request::create('oauth/token','POST');
-        return Route::dispatch($proxy);
+
+        return Route::dispatch($proxy); //returns a response from the oauth server with access token and refresh token
     }
 
     public function requestParams($grant_type='password',$data){
