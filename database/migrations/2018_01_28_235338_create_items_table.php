@@ -15,14 +15,18 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade');
+            $table->string('public_id');
             $table->string('title');
             $table->string('description');
-            $table->string('item');
+            $table->string('item_url');
             $table->string('tags');
             $table->string('item_type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
