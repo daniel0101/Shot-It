@@ -125,6 +125,24 @@ class ItemController extends Controller
         }
     }
 
+    /**
+     * Search the item model with elastic search.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $result = '';
+        if($request->has('search')){
+            $query_string = $request->input('search');
+            $result = Item::search($query_string);
+        }else{
+            $result = Item::search('*');
+        }
+        return response()->json(['status'=>'ok','message'=>$result],200);
+    }
+
     public function validateData($data){
         $rules = [
             'item_url'=>'String',

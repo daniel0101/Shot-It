@@ -167,7 +167,12 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Passport\PassportServiceProvider::class,        
+        Laravel\Passport\PassportServiceProvider::class,  
+         // the Scout package itself
+        Laravel\Scout\ScoutServiceProvider::class,
+        
+        // the driver for Elasticsearch
+        ScoutElastic\ScoutElasticServiceProvider::class,      
         /*
          * Application Service Providers...
          */
